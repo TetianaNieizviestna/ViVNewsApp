@@ -6,5 +6,7 @@ target 'ViVNewsApp' do
   use_frameworks!
 
   # Pods for ViVNewsApp
-
+  pod 'Alamofire', '~> 4.9.0'
+  pod 'AlamofireImage', '~> 3.5.2'
+  
 end
