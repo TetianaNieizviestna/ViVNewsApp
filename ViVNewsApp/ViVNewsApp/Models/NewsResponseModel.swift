@@ -27,11 +27,11 @@ struct NewsModel: Codable, Equatable {
     let type: String?
     let title: String?
     let abstract: String?
-    let media: MediaModel?
+    let media: [MediaModel]?
     
     enum CodingKeys: String, CodingKey {
         case uri, url, id
-        case assetId = "assets_id"
+        case assetId = "asset_id"
         case source
         case publishedDate = "published_date"
         case updated
@@ -52,10 +52,13 @@ struct MediaModel: Codable, Equatable {
     let subtype: String?
     let caption: String?
     let copyright: String?
-    let mediaMetadata: [MediaMetadataModel]?
+    let mediaMetadata: [MediaMetadataModel?]?
     
     enum CodingKeys: String, CodingKey {
-        case type, subtype, caption, copyright
+        case type
+        case subtype
+        case caption
+        case copyright
         case mediaMetadata = "media-metadata"
     }
 }
@@ -63,6 +66,6 @@ struct MediaModel: Codable, Equatable {
 struct MediaMetadataModel: Codable, Equatable {
     let url: String?
     let format: String?
-    let height: Int
-    let width: Int
+    let height: Int?
+    let width: Int?
 }

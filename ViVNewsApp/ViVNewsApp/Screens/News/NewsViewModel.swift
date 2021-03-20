@@ -93,13 +93,13 @@ final class NewsViewModel: NewsViewModelType {
     
     
     private func createCellProps(_ newsModel: NewsModel) -> NewsTableViewCell.Props {
-        let props = NewsTableViewCell.Props(
+        return .init(
             title: newsModel.title ?? "",
             author: newsModel.byline ?? "",
             source: newsModel.source ?? "",
             date: Date.getFormattedDateString(string: newsModel.publishedDate ?? ""),
             description: newsModel.abstract ?? "",
-            imageUrl: newsModel.uri,
+            imageUrl: nil,
             isFavorite: favouritesService.isFavourite(id: newsModel.id),
             type: self.selectedTab,
             onSelect: Command {
@@ -108,6 +108,5 @@ final class NewsViewModel: NewsViewModelType {
                 }
             }
         )
-        return .initial
     }
 }
