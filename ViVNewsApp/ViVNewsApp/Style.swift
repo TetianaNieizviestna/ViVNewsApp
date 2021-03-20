@@ -18,4 +18,11 @@ struct Style {
         static let segmentBgSelected = UIColor(red: 0, green: 0, blue: 50, alpha: 0.6)
 
     }
+    
+    struct Image {
+        static let news = UIImage(named: "news")
+        static let newsSelected = UIImage(named: "news_filled")
+        static let favourite = UIImage(named: "favorites")
+        static let favouriteSelected = UIImage(named: "favorites_filled")
+    }
 }

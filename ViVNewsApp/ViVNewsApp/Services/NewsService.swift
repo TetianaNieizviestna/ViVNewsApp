@@ -8,59 +8,55 @@
 import Foundation
 import Alamofire
 
-typealias NewsResponse = ((Result<[NewsModel]>) -> Void)?
+typealias NewsEmailedResponse = ((Result<[NewsModel]>) -> Void)?
 
-typealias OneNewsModelCompletionType = ((Result<NewsModel>) -> Void)?
+typealias OneNewsModelCompletionType = ((Result<NewsResponseModel>) -> Void)?
 
 protocol NewsServiceType: Service {
-    var news: [NewsModel] { get set }
-
-    func loadNews(completion: NewsResponse)
+    func loadEmailed(completion: NewsEmailedResponse)
+    func loadShared(completion: NewsEmailedResponse)
+    func loadViewed(completion: NewsEmailedResponse)
 }
 
 class NewsService: NewsServiceType {
-    var news: [NewsModel]
+    private var newsModels: [NewsModel] = []
+
+    func loadEmailed(completion: NewsEmailedResponse) {
+        let period = 30
         
-    init() {
-        news = []
+        guard let url = Network.getUrlComponents(path: "\(ApiPath.emailed.string)/\(period).json?api-key=\(Defines.API.apiKey)") else {
+            completion?(.failure(ViVAPIError.notMapError))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        Alamofire.request(request).validate().responseJSON { (response) in
+            guard let httpResponse = response.response else {
+                completion?(.failure(ViVAPIError.notMapError))
+                return
+            }
+            let httpStatusCode = httpResponse.statusCode
+            let acceptebleStatusCodes = IndexSet(integersIn: 200...300)
+            if let error = response.error, !acceptebleStatusCodes.contains(httpStatusCode) {
+                completion?(.failure(error))
+            } else if let data = response.data {
+                do {
+                    let result = try JSONDecoder().decode(NewsResponseModel.self, from: data)
+                    self.newsModels = result.results
+                    completion?(.success(self.newsModels))
+                } catch {
+                    completion?(.failure(error))
+                }
+            } else {
+                completion?(.failure(ViVAPIError.notMapError))
+            }
+        }
     }
     
-    func loadNews(completion: NewsResponse) {
-        print("loadMessages")
-//        let url = networkService.getUrlComponents(path: "/api/message/byjob/\(jobId)")
-//        let request = networkService.getDefaultRequest(url: url)
-//
-//        //        request.cachePolicy = URLRequest.CachePolicy.returnCacheDataElseLoad
-//        Alamofire.request(request).validate().responseJSON { (response) in
-//            guard let httpResponse = response.response else {
-//                if !NetworkService.isConnectedToInternet {
-//                    completion?(.failure(AppError.noInternetConnection))
-//                } else {
-//                    completion?(.failure(AppError.serverError))
-//                }
-//                return
-//            }
-//            let httpStatusCode = httpResponse.statusCode
-//            let acceptebleStatusCodes = IndexSet(integersIn: 200...300)
-//            if let error = response.error, !acceptebleStatusCodes.contains(httpStatusCode) {
-//                print("Load messages request error: \(error.localizedDescription)")
-//                completion?(.failure(AppError.server(httpStatusCode)))
-//            } else if let data = response.data {
-//                do {
-//                    let messagesResult = try JSONDecoder().decode([MessageModel].self, from: data)
-//                    completion?(.success(messagesResult))
-//                } catch {
-//                    completion?(.failure(AppError.serverError))
-//                }
-//            } else {
-//                print(AppError.dataError.localizedDescription)
-//                if !NetworkService.isConnectedToInternet {
-//                    completion?(.failure(AppError.noInternetConnection))
-//                } else {
-//                    completion?(.failure(AppError.dataError))
-//                }
-//            }
-//
-//        }
+    func loadShared(completion: NewsEmailedResponse) {
+    }
+    
+    func loadViewed(completion: NewsEmailedResponse) {
     }
 }

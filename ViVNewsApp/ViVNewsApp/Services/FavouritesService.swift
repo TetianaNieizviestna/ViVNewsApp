@@ -11,21 +11,35 @@ import Foundation
 
 protocol FavouritesServiceType: Service {
     func getFavourites() -> [NewsModel]
-    func add(news: NewsModel)
-    func remove(news: NewsModel)
+    func add(element: NewsModel)
+    func remove(id: Int)
+    func isFavourite(id: Int?) -> Bool
 }
 
 class FavouritesService: FavouritesServiceType {
+    private var news: [NewsModel] = []
+     
     func getFavourites() -> [NewsModel] {
         // get from CoreData
-        return []
+//        news = getFromCoreData()
+        return news
     }
     
-    func add(news: NewsModel) {
-        
+    func add(element: NewsModel) {
+        news.append(element)
+        updateCoreData()
     }
     
-    func remove(news: NewsModel) {
-        
+    func remove(id: Int) {
+        news.removeAll { $0.id == id }
+        updateCoreData()
+    }
+    
+    func isFavourite(id: Int?) -> Bool {
+        return news.contains { $0.id == id }
+    }
+    
+    private func updateCoreData() {
+//        CoreDataHelper.saveToCoreData(news)
     }
 }

@@ -52,9 +52,9 @@ enum TabItem: Equatable {
         var image: UIImage?
         switch self {
         case .news:
-            image = UIImage(named: "news")
+            image = Style.Image.news
         case .favourites:
-            image = UIImage(named: "favorites")
+            image = Style.Image.favourite
         }
         return image?.withRenderingMode(.alwaysOriginal).withTintColor(Style.Color.tabBarItem)
     }
@@ -63,9 +63,9 @@ enum TabItem: Equatable {
         var image: UIImage?
         switch self {
         case .news:
-            image = UIImage(named: "news_filled")
+            image = Style.Image.newsSelected
         case .favourites:
-            image = UIImage(named: "favorites_filled")
+            image = Style.Image.favouriteSelected
         }
         return image?.withRenderingMode(.alwaysOriginal).withTintColor(Style.Color.tabBarItemSelected)
     }
