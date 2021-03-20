@@ -24,8 +24,8 @@ class NewsService: NewsServiceType {
     func loadEmailed(completion: NewsEmailedResponse) {
         let period = 30
         
-        guard let url = Network.getUrlComponents(path: "\(ApiPath.emailed.string)/\(period).json?api-key=\(Defines.API.apiKey)") else {
-            completion?(.failure(ViVAPIError.notMapError))
+        guard let url = URL(string: "\(ApiPath.emailed.string)/\(period).json?api-key=\(Defines.API.apiKey)") else {
+            completion?(.failure(ViVAPIError.urlError))
             return
         }
         

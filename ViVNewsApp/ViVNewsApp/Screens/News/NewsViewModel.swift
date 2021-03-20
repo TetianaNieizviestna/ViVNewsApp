@@ -19,7 +19,8 @@ enum NewsSegmentTab: Int {
 
 protocol NewsViewModelType {
     var didLoadData: ((NewsProps) -> Void)? { get set }
-
+    
+    func refresh()
 }
 
 final class NewsViewModel: NewsViewModelType {
@@ -41,7 +42,7 @@ final class NewsViewModel: NewsViewModelType {
     }
     
     private func loadNews() {
-        newsService.loadEmailed(completion: { result in
+        newsService.loadEmailed { result in
             switch result {
             case .success(let result):
                 self.news = result
@@ -50,7 +51,10 @@ final class NewsViewModel: NewsViewModelType {
                 self.updateProps(error.localizedDescription)
             }
         }
-        )
+    }
+    
+    func refresh() {
+        loadNews()
     }
     
     func updateProps(_ error: String? = nil) {

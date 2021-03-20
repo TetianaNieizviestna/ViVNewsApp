@@ -35,7 +35,8 @@ final class NewsViewController: UIViewController {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var segmentedControl: UISegmentedControl!
     @IBOutlet private var tableView: UITableView!
-    
+    var refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -65,6 +66,14 @@ final class NewsViewController: UIViewController {
     private func setupTableView() {
         tableView.setDataSource(self, delegate: self)
         tableView.register([NewsTableViewCell.identifier])
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl) // not required when using UITableViewController
+
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        viewModel.refresh()
     }
     
     func render(_ props: Props) {
