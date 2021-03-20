@@ -15,6 +15,14 @@ enum TabItem: Equatable {
     case news(NewsCoordinator)
     case favourites(FavouritesCoordinator)
     
+    var item: UITabBarItem {
+        let item = UITabBarItem(title: displayTitle, image: icon, selectedImage: iconFill)
+        
+        item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.Color.tabBarItem], for: .normal)
+        item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.Color.tabBarItemSelected], for: .selected)
+        return item
+    }
+    
     var index: Int {
         switch self {
         case .news:
@@ -25,21 +33,37 @@ enum TabItem: Equatable {
     }
     
     var controller: UIViewController? {
+        var controller: UIViewController?
         switch self {
         case .news(let coordinator):
-           return coordinator.controller
+             controller = coordinator.controller
         case .favourites(let coordinator):
-            return coordinator.controller
+             controller = coordinator.controller
         }
+        controller?.tabBarItem = item
+        return controller
     }
     
     var icon: UIImage? {
+        var image: UIImage?
         switch self {
         case .news:
-            return UIImage()
+            image = UIImage(named: "news")
         case .favourites:
-            return UIImage()
+            image = UIImage(named: "favorites")
         }
+        return image?.withRenderingMode(.alwaysOriginal).withTintColor(Style.Color.tabBarItem)
+    }
+    
+    var iconFill: UIImage? {
+        var image: UIImage?
+        switch self {
+        case .news:
+            image = UIImage(named: "news_filled")
+        case .favourites:
+            image = UIImage(named: "favorites_filled")
+        }
+        return image?.withRenderingMode(.alwaysOriginal).withTintColor(Style.Color.tabBarItemSelected)
     }
     
     var displayTitle: String {

@@ -25,7 +25,6 @@ final class TabBarCoordinator {
     func start(with items: [TabItem]) {
         let controller = UITabBarController()
         controller.viewControllers = items.compactMap { $0.controller }
-        self.rootController = controller
         
         window.rootViewController = controller
         window.makeKeyAndVisible()
