@@ -38,6 +38,8 @@
 		AB073CFB26067677008F0F8E /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB073CF926067677008F0F8E /* NewsTableViewCell.xib */; };
 		AB073CFF26069E33008F0F8E /* UIImageView+load.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073CFE26069E33008F0F8E /* UIImageView+load.swift */; };
 		AB073D0226069F14008F0F8E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D0126069F14008F0F8E /* Date.swift */; };
+		AB073D092606BA12008F0F8E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D082606BA12008F0F8E /* Data.swift */; };
+		AB073D0C2606BDF2008F0F8E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D0B2606BDF2008F0F8E /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,8 @@
 		AB073CF926067677008F0F8E /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		AB073CFE26069E33008F0F8E /* UIImageView+load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load.swift"; sourceTree = "<group>"; };
 		AB073D0126069F14008F0F8E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		AB073D082606BA12008F0F8E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		AB073D0B2606BDF2008F0F8E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		BC11A01A2BDB5A097236F2E7 /* Pods-ViVNewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViVNewsApp.debug.xcconfig"; path = "Target Support Files/Pods-ViVNewsApp/Pods-ViVNewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +203,8 @@
 				AB073CF326067620008F0F8E /* UITableView.swift */,
 				AB073CFE26069E33008F0F8E /* UIImageView+load.swift */,
 				AB073D0126069F14008F0F8E /* Date.swift */,
+				AB073D082606BA12008F0F8E /* Data.swift */,
+				AB073D0B2606BDF2008F0F8E /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -382,6 +388,7 @@
 				AB073CFA26067677008F0F8E /* NewsTableViewCell.swift in Sources */,
 				AB073C7526052610008F0F8E /* NewsService.swift in Sources */,
 				AB073CB5260537A4008F0F8E /* FavouritesCoordinator.swift in Sources */,
+				AB073D0C2606BDF2008F0F8E /* UIView.swift in Sources */,
 				AB073C8826052D28008F0F8E /* TabItem.swift in Sources */,
 				AB073CAF2605372F008F0F8E /* FavouritesViewController.swift in Sources */,
 				AB073CC3260628F0008F0F8E /* Style.swift in Sources */,
@@ -396,6 +403,7 @@
 				AB073C8426052BEE008F0F8E /* TabBarCoordinator.swift in Sources */,
 				AB073CA5260536A1008F0F8E /* NewsViewController.swift in Sources */,
 				AB073C4526052207008F0F8E /* AppDelegate.swift in Sources */,
+				AB073D092606BA12008F0F8E /* Data.swift in Sources */,
 				AB073D0226069F14008F0F8E /* Date.swift in Sources */,
 				AB073CEC26067517008F0F8E /* Command.swift in Sources */,
 				AB073C7C26052992008F0F8E /* FavouritesService.swift in Sources */,

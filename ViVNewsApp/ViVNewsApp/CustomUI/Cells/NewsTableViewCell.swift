@@ -23,6 +23,7 @@ class NewsTableViewCell: UITableViewCell {
         static let initial: Props = .init(title: "", author: "", source: "", date: "", description: "", imageUrl: nil, isFavorite: false, type: .emailed, onSelect: .nop)
     }
 
+    @IBOutlet private var bgView: UIView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
@@ -35,7 +36,8 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
-        
+        loadedImageView.setCornersRadius(6)
+        bgView.setCornersRadius(6)
     }
     
     func render(_ props: Props) {

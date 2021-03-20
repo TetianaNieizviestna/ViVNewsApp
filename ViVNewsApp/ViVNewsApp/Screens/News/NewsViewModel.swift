@@ -99,7 +99,7 @@ final class NewsViewModel: NewsViewModelType {
             source: newsModel.source ?? "",
             date: Date.getFormattedDateString(string: newsModel.publishedDate ?? ""),
             description: newsModel.abstract ?? "",
-            imageUrl: nil,
+            imageUrl: getImage(from: newsModel),
             isFavorite: favouritesService.isFavourite(id: newsModel.id),
             type: self.selectedTab,
             onSelect: Command {
@@ -108,5 +108,13 @@ final class NewsViewModel: NewsViewModelType {
                 }
             }
         )
+    }
+    
+    private func getImage(from model: NewsModel) -> String? {
+        if let firstImageMedia = model.media?.first(where: { $0.type == "image" }),
+           let firstImage = firstImageMedia.mediaMetadata?[0] {
+            return firstImage.url
+        }
+        return nil
     }
 }

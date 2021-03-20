@@ -42,8 +42,6 @@ class NewsService: NewsServiceType {
                 completion?(.failure(error))
             } else if let data = response.data {
                 do {
-                    let str = String(decoding: data, as: UTF8.self)
-                    print("[DATA]: \(str)")
                     let result = try JSONDecoder().decode(NewsResponseModel.self, from: data)
                     self.newsModels = result.results
                     completion?(.success(self.newsModels))
