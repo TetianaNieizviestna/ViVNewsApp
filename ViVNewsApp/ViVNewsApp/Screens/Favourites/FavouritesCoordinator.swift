@@ -30,7 +30,7 @@ final class FavouritesCoordinator: FavouritesCoordinatorType {
     }
     
     func onNewsDetails() {
-        
+//        let coordinator = ArticleCoordinator()
+//        coordinator.start()
     }
-
 }

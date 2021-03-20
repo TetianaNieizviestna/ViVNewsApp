@@ -32,5 +32,4 @@ final class NewsCoordinator: NewsCoordinatorType {
     func onNewsDetails() {
         
     }
-
 }

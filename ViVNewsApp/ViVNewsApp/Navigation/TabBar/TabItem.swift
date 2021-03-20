@@ -18,8 +18,12 @@ enum TabItem: Equatable {
     var item: UITabBarItem {
         let item = UITabBarItem(title: displayTitle, image: icon, selectedImage: iconFill)
         
-        item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.Color.tabBarItem], for: .normal)
         item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.Color.tabBarItemSelected], for: .selected)
+        item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.Color.tabBarItem], for: .normal)
+        
+        UITabBar.appearance().tintColor = Style.Color.tabBarItem
+        UITabBar.appearance().unselectedItemTintColor = Style.Color.tabBarItem
+
         return item
     }
     

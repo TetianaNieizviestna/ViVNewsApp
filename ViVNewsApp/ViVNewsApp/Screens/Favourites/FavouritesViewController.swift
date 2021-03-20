@@ -7,8 +7,11 @@
 
 import UIKit
 
-class FavouritesViewController: UIViewController {
+final class FavouritesViewController: UIViewController {
     var viewModel: FavouritesViewModelType!
+    
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()

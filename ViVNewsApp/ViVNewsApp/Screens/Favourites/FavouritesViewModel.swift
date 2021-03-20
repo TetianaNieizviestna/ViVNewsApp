@@ -9,7 +9,7 @@ import Foundation
 
 protocol FavouritesViewModelType {}
 
-class FavouritesViewModel: FavouritesViewModelType{
+final class FavouritesViewModel: FavouritesViewModelType{
     private let coordinator: FavouritesCoordinatorType
     private var favouritesService: FavouritesServiceType
 
