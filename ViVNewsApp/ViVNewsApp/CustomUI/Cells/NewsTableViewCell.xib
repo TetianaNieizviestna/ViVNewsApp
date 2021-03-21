@@ -21,7 +21,6 @@
                         <rect key="frame" x="296" y="20" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="AGe-7I-Nkk"/>
-                            <constraint firstAttribute="height" constant="80" id="Xs6-cG-DCZ"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQW-gc-vBT">
@@ -74,6 +73,7 @@
                 </subviews>
                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.1960784314" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="deviceRGB"/>
                 <constraints>
+                    <constraint firstItem="jrZ-aC-axO" firstAttribute="height" secondItem="iQW-gc-vBT" secondAttribute="height" multiplier="0.727273" id="0V5-Oq-Riw"/>
                     <constraint firstItem="iQW-gc-vBT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="COV-9i-UQJ"/>
                     <constraint firstAttribute="bottom" secondItem="iQW-gc-vBT" secondAttribute="bottom" constant="5" id="Dsc-vq-LAy"/>
                     <constraint firstItem="jrZ-aC-axO" firstAttribute="leading" secondItem="iQW-gc-vBT" secondAttribute="trailing" constant="5" id="dBf-Kx-mz0"/>
@@ -88,6 +88,8 @@
                 <outlet property="dateLabel" destination="1tE-Ca-tjv" id="suz-7q-JZj"/>
                 <outlet property="descriptionLabel" destination="da2-nU-wiZ" id="1EM-ow-4Eb"/>
                 <outlet property="favouritesImageView" destination="vJ7-Qg-HFd" id="cdX-SD-dnq"/>
+                <outlet property="imageViewTrailingConstraint" destination="yt7-LT-Auk" id="UVw-x9-MwJ"/>
+                <outlet property="imageViewWidthConstraint" destination="AGe-7I-Nkk" id="0dh-Nw-LbI"/>
                 <outlet property="loadedImageView" destination="jrZ-aC-axO" id="gfx-DR-GGu"/>
                 <outlet property="titleLabel" destination="Uad-2d-sZC" id="0gp-oY-jxw"/>
             </connections>

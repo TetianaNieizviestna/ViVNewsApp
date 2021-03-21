@@ -29,12 +29,17 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private var loadedImageView: UIImageView!
     @IBOutlet private var favouritesImageView: UIImageView!
+    @IBOutlet private var imageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private var imageViewTrailingConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
     }
     
+    override func prepareForReuse() {
+        loadedImageView.image = nil
+    }
     private func setupUI() {
         loadedImageView.setCornersRadius(6)
         bgView.setCornersRadius(6)
@@ -50,5 +55,10 @@ class NewsTableViewCell: UITableViewCell {
             favouritesImageView.isHidden = true
         }
         loadedImageView.setImage(by: props.imageUrl)
+        
+        if loadedImageView.image == nil {
+            self.imageViewWidthConstraint.constant = 0
+            self.imageViewTrailingConstraint.constant = 0
+        }
     }
 }
