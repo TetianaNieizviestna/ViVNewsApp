@@ -42,7 +42,9 @@ final class FavouritesViewModel: FavouritesViewModelType{
             state: self.screenState,
             items: self.createItems()
         )
-        self.didStateChanged?(props)
+        DispatchQueue.main.async {
+            self.didStateChanged?(props)
+        }
     }
 
     private func createItems() -> [NewsTableViewCell.Props] {

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ArticleDetailsCoordinatorType {
-    func dissmiss()
+    func dismiss()
 }
 
 final class ArticleDetailsCoordinator: ArticleDetailsCoordinatorType {
@@ -16,10 +16,13 @@ final class ArticleDetailsCoordinator: ArticleDetailsCoordinatorType {
     private let navigationController: UINavigationController?
     private var serviceHolder: ServiceHolder!
     
+    private var article: NewsModel
+    
     init(navigationController: UINavigationController?, serviceHolder: ServiceHolder, article: NewsModel) {
         self.navigationController = navigationController
         self.navigationController?.navigationBar.isTranslucent = true
         self.serviceHolder = serviceHolder
+        self.article = article
         controller?.viewModel = ArticleDetailsViewModel(self, serviceHolder: self.serviceHolder, article: article)
     }
     
@@ -27,14 +30,12 @@ final class ArticleDetailsCoordinator: ArticleDetailsCoordinatorType {
         if let controller = controller {
             controller.modalTransitionStyle = .coverVertical
             controller.modalPresentationStyle = .overFullScreen
-            
+
             UIApplication.topViewController()?.present(controller, animated: true, completion: nil)
         }
     }
     
-    func dissmiss() {
-        if let controller = controller {
-            controller.dismiss(animated: false)
-        }
+    func dismiss() {
+        self.controller?.dismiss(animated: false) 
     }
 }

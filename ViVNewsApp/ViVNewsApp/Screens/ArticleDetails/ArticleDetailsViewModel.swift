@@ -10,8 +10,6 @@ typealias ArticleProps = ArticleDetailsViewController.Props
 
 protocol ArticleDetailsViewModelType {
     var didStateChanged: ((ArticleProps) -> Void)? { get set }
-    
-    func changeFavouritesState()
 }
 
 final class ArticleDetailsViewModel: ArticleDetailsViewModelType{
@@ -21,31 +19,28 @@ final class ArticleDetailsViewModel: ArticleDetailsViewModelType{
     private var favouritesService: FavouritesServiceType
     
     private var newsModel: NewsModel
-    private var screenState: ArticleProps.ScreenState = .initial
 
     init(_ coordinator: ArticleDetailsCoordinatorType, serviceHolder: ServiceHolder, article: NewsModel) {
         self.coordinator = coordinator
         favouritesService = serviceHolder.get(by: FavouritesServiceType.self)
         self.newsModel = article
-    }
-    
-    private func setScreenState(_ state: ArticleProps.ScreenState) {
-        screenState = state
-        updateProps()
+        self.updateProps()
     }
     
     func updateProps() {
         let props = ArticleProps(
-            state: self.screenState,
             url: newsModel.url ?? "",
+            isFavourite: favouritesService.isFavourite(id: newsModel.id),
             onBack: Command {
-                self.coordinator.dissmiss()
+                self.coordinator.dismiss()
             },
             onFavourite: Command {
                 self.changeFavouritesState()
             }
         )
-        self.didStateChanged?(props)
+        DispatchQueue.main.async {
+            self.didStateChanged?(props)
+        }
     }
     
     func changeFavouritesState() {

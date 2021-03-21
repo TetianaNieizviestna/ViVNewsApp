@@ -17,7 +17,7 @@ struct NewsModel: Codable, Equatable, ManagedObjectConvertible {
         if let id = self.id {
             if let object = object as? NewsModelData {
                 object.url = self.url
-                object.id = Int16(id)
+                object.id = Int64(id)
                 object.source = self.source
                 object.publishedDate = self.publishedDate
                 object.section = self.section

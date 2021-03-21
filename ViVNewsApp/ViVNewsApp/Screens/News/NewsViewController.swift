@@ -38,9 +38,7 @@ final class NewsViewController: UIViewController {
         setupUI()
         
         viewModel.didStateChanged = { [weak self] props in
-            DispatchQueue.main.async {
-                self?.render(props)
-            }
+            self?.render(props)
         }
     }
     

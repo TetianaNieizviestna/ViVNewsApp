@@ -87,15 +87,6 @@ final class NewsViewModel: NewsViewModelType {
     func refresh() {
         loadNews()
     }
-    
-    func updateProps() {
-        let props = NewsProps(
-            state: self.screenState,
-            selectedTab: self.selectedTab,
-            items: self.createItems()
-        )
-        self.didStateChanged?(props)
-    }
 
     private func createItems() -> [NewsTableViewCell.Props] {
         return news.map { self.createCellProps($0) }
@@ -127,5 +118,16 @@ final class NewsViewModel: NewsViewModelType {
     func selectSegmentTab(index: Int) {
         selectedTab = NewsSegmentTab(rawValue: index) ?? .emailed
         loadNews()
+    }
+    
+    func updateProps() {
+        let props = NewsProps(
+            state: self.screenState,
+            selectedTab: self.selectedTab,
+            items: self.createItems()
+        )
+        DispatchQueue.main.async {
+            self.didStateChanged?(props)
+        }
     }
 }
