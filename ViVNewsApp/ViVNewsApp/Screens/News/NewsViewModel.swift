@@ -102,20 +102,9 @@ final class NewsViewModel: NewsViewModelType {
         }
     }
 
-    private func createItems() -> [NewsProps.Item] {
-        let items = news.map { article -> NewsProps.Item in
-            switch self.selectedTab{
-            case .emailed:
-                return .emailed(createCellProps(article))
-            case .viewed:
-                return .viewed(createCellProps(article))
-            case .shared:
-                return .shared(createCellProps(article))
-            }
-        }
-        return items
+    private func createItems() -> [NewsTableViewCell.Props] {
+        return news.map { self.createCellProps($0) }
     }
-    
     
     private func createCellProps(_ newsModel: NewsModel) -> NewsTableViewCell.Props {
         return .init(

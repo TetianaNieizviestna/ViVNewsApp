@@ -19,11 +19,7 @@ extension NewsViewController {
         
         let selectedTab: NewsSegmentTab
         
-        let items: [Item]; enum Item {
-            case emailed(NewsTableViewCell.Props)
-            case shared(NewsTableViewCell.Props)
-            case viewed(NewsTableViewCell.Props)
-        }
+        let items: [NewsTableViewCell.Props]
         static let initial: Props = .init(state: .initial, selectedTab: .emailed, items: [])
     }
 }
@@ -102,14 +98,7 @@ final class NewsViewController: UIViewController {
 
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch props.items[indexPath.row] {
-        case .emailed(let cellProps):
-            cellProps.onSelect.perform()
-        case .shared(let cellProps):
-            cellProps.onSelect.perform()
-        case .viewed(let cellProps):
-            cellProps.onSelect.perform()
-        }
+        props.items[indexPath.row].onSelect.perform()
     }
 }
 
@@ -119,20 +108,9 @@ extension NewsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch props.items[indexPath.row] {
-        case .emailed(let cellProps):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier) as? NewsTableViewCell else { return UITableViewCell() }
-            cell.render(cellProps)
-            return cell
-        case .shared(let cellProps):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier) as? NewsTableViewCell else { return UITableViewCell() }
-            cell.render(cellProps)
-            return cell
-        case .viewed(let cellProps):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier) as? NewsTableViewCell else { return UITableViewCell() }
-            cell.render(cellProps)
-            return cell
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier) as? NewsTableViewCell else { return UITableViewCell() }
+        cell.render(props.items[indexPath.row])
+        return cell
     }
     
     
