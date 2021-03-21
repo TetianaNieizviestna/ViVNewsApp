@@ -40,6 +40,13 @@
 		AB073D0226069F14008F0F8E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D0126069F14008F0F8E /* Date.swift */; };
 		AB073D092606BA12008F0F8E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D082606BA12008F0F8E /* Data.swift */; };
 		AB073D0C2606BDF2008F0F8E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D0B2606BDF2008F0F8E /* UIView.swift */; };
+		AB073D2126076F7D008F0F8E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB073D1F26076F7D008F0F8E /* CoreDataModel.xcdatamodeld */; };
+		AB073D3E26078289008F0F8E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D3D26078289008F0F8E /* CoreDataHelper.swift */; };
+		AB073D42260782B7008F0F8E /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D41260782B7008F0F8E /* DataAccessObject.swift */; };
+		AB073D45260782D1008F0F8E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D44260782D1008F0F8E /* DataController.swift */; };
+		AB073D482607830E008F0F8E /* GenericDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D472607830E008F0F8E /* GenericDAO.swift */; };
+		AB073D4B260783DA008F0F8E /* CoreDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D4A260783DA008F0F8E /* CoreDataServices.swift */; };
+		AB073D4F26079194008F0F8E /* DataModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D4E26079194008F0F8E /* DataModelExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +86,13 @@
 		AB073D0126069F14008F0F8E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		AB073D082606BA12008F0F8E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		AB073D0B2606BDF2008F0F8E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		AB073D2026076F7D008F0F8E /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		AB073D3D26078289008F0F8E /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		AB073D41260782B7008F0F8E /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
+		AB073D44260782D1008F0F8E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		AB073D472607830E008F0F8E /* GenericDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDAO.swift; sourceTree = "<group>"; };
+		AB073D4A260783DA008F0F8E /* CoreDataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServices.swift; sourceTree = "<group>"; };
+		AB073D4E26079194008F0F8E /* DataModelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelExtension.swift; sourceTree = "<group>"; };
 		BC11A01A2BDB5A097236F2E7 /* Pods-ViVNewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViVNewsApp.debug.xcconfig"; path = "Target Support Files/Pods-ViVNewsApp/Pods-ViVNewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,16 +146,17 @@
 		AB073C4326052207008F0F8E /* ViVNewsApp */ = {
 			isa = PBXGroup;
 			children = (
-				AB073CF626067650008F0F8E /* CustomUI */,
-				AB073CEE2606752E008F0F8E /* Abstractions */,
 				AB073C4426052207008F0F8E /* AppDelegate.swift */,
 				AB073CC626064292008F0F8E /* Defines.swift */,
 				AB073CC2260628F0008F0F8E /* Style.swift */,
+				AB073CF626067650008F0F8E /* CustomUI */,
+				AB073CEE2606752E008F0F8E /* Abstractions */,
 				AB073C6826052523008F0F8E /* Navigation */,
 				AB073C7726052946008F0F8E /* Models */,
 				AB073C70260525DD008F0F8E /* Services */,
 				AB073C9426052E4F008F0F8E /* Extensions */,
 				AB073C6226052478008F0F8E /* Screens */,
+				AB073D1E26076F5B008F0F8E /* Resources */,
 				AB073C4D26052208008F0F8E /* Assets.xcassets */,
 				AB073C4F26052208008F0F8E /* LaunchScreen.storyboard */,
 				AB073C5226052208008F0F8E /* Info.plist */,
@@ -170,10 +185,12 @@
 		AB073C70260525DD008F0F8E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AB073D40260782A4008F0F8E /* CoreData */,
 				AB073CC926064356008F0F8E /* Network */,
 				AB073C71260525F7008F0F8E /* ServiceHolder.swift */,
 				AB073C7426052610008F0F8E /* NewsService.swift */,
 				AB073C7B26052992008F0F8E /* FavouritesService.swift */,
+				AB073D4A260783DA008F0F8E /* CoreDataServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -182,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				AB073C7826052950008F0F8E /* NewsResponseModel.swift */,
+				AB073D4E26079194008F0F8E /* DataModelExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,6 +281,25 @@
 				AB073CF926067677008F0F8E /* NewsTableViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		AB073D1E26076F5B008F0F8E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AB073D40260782A4008F0F8E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				AB073D3D26078289008F0F8E /* CoreDataHelper.swift */,
+				AB073D41260782B7008F0F8E /* DataAccessObject.swift */,
+				AB073D44260782D1008F0F8E /* DataController.swift */,
+				AB073D472607830E008F0F8E /* GenericDAO.swift */,
+				AB073D1F26076F7D008F0F8E /* CoreDataModel.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,9 +420,11 @@
 			files = (
 				AB073CB22605376C008F0F8E /* FavouritesViewModel.swift in Sources */,
 				AB073CD826064492008F0F8E /* Network.swift in Sources */,
+				AB073D3E26078289008F0F8E /* CoreDataHelper.swift in Sources */,
 				AB073C7926052950008F0F8E /* NewsResponseModel.swift in Sources */,
 				AB073CA8260536EC008F0F8E /* NewsViewModel.swift in Sources */,
 				AB073CFA26067677008F0F8E /* NewsTableViewCell.swift in Sources */,
+				AB073D4B260783DA008F0F8E /* CoreDataServices.swift in Sources */,
 				AB073C7526052610008F0F8E /* NewsService.swift in Sources */,
 				AB073CB5260537A4008F0F8E /* FavouritesCoordinator.swift in Sources */,
 				AB073D0C2606BDF2008F0F8E /* UIView.swift in Sources */,
@@ -394,6 +433,7 @@
 				AB073CC3260628F0008F0F8E /* Style.swift in Sources */,
 				AB073CD626064492008F0F8E /* ViVAPIError.swift in Sources */,
 				AB073C9E260535E5008F0F8E /* Storyboard.swift in Sources */,
+				AB073D42260782B7008F0F8E /* DataAccessObject.swift in Sources */,
 				AB073CF426067620008F0F8E /* UITableView.swift in Sources */,
 				AB073C6A26052535008F0F8E /* AppCoordinator.swift in Sources */,
 				AB073C72260525F7008F0F8E /* ServiceHolder.swift in Sources */,
@@ -401,12 +441,16 @@
 				AB073CF1260675D7008F0F8E /* UIViewController+Alert.swift in Sources */,
 				AB073C8C26052D56008F0F8E /* NewsCoordinator.swift in Sources */,
 				AB073C8426052BEE008F0F8E /* TabBarCoordinator.swift in Sources */,
+				AB073D4F26079194008F0F8E /* DataModelExtension.swift in Sources */,
 				AB073CA5260536A1008F0F8E /* NewsViewController.swift in Sources */,
 				AB073C4526052207008F0F8E /* AppDelegate.swift in Sources */,
 				AB073D092606BA12008F0F8E /* Data.swift in Sources */,
+				AB073D45260782D1008F0F8E /* DataController.swift in Sources */,
 				AB073D0226069F14008F0F8E /* Date.swift in Sources */,
 				AB073CEC26067517008F0F8E /* Command.swift in Sources */,
+				AB073D482607830E008F0F8E /* GenericDAO.swift in Sources */,
 				AB073C7C26052992008F0F8E /* FavouritesService.swift in Sources */,
+				AB073D2126076F7D008F0F8E /* CoreDataModel.xcdatamodeld in Sources */,
 				AB073CC726064292008F0F8E /* Defines.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,6 +647,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AB073D1F26076F7D008F0F8E /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AB073D2026076F7D008F0F8E /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = AB073D2026076F7D008F0F8E /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AB073C3926052207008F0F8E /* Project object */;
 }

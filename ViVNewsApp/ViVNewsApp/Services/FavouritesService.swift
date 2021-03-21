@@ -7,8 +7,6 @@
 
 import Foundation
 
-// TODO: Add CoreData to save Favourites
-
 protocol FavouritesServiceType: Service {
     func getFavourites() -> [NewsModel]
     func add(element: NewsModel)

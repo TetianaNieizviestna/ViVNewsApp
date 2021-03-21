@@ -11,11 +11,10 @@ import AlamofireImage
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     private var appCoordinator: AppCoordinator?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         DataRequest.addAcceptableImageContentTypes(["application/octet-stream"])
         
         let window = UIWindow(frame: UIScreen.main.bounds)
