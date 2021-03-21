@@ -37,7 +37,7 @@ final class NewsViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-        viewModel.didLoadData = { [weak self] props in
+        viewModel.didStateChanged = { [weak self] props in
             DispatchQueue.main.async {
                 self?.render(props)
             }
@@ -68,10 +68,11 @@ final class NewsViewController: UIViewController {
     private func setupTableView() {
         tableView.setDataSource(self, delegate: self)
         tableView.register([NewsTableViewCell.identifier])
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        tableView.addSubview(refreshControl) // not required when using UITableViewController
+        tableView.tableFooterView = UIView(frame: .zero)
 
+        refreshControl.attributedTitle = NSAttributedString(string: "Loading...")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -83,12 +84,15 @@ final class NewsViewController: UIViewController {
 
         switch props.state {
         case .initial:
-            break
+            view.stopHud()
         case .loading:
-            break
+            view.startHud()
         case .loaded:
-            break
+            refreshControl.endRefreshing()
+            view.stopHud()
         case .failed(let error):
+            refreshControl.endRefreshing()
+            view.stopHud()
             showAlert(title: "Error", message: error)
         }
         segmentedControl.selectedSegmentIndex = props.selectedTab.rawValue

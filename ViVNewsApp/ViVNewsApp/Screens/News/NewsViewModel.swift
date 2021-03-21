@@ -18,15 +18,14 @@ enum NewsSegmentTab: Int {
 }
 
 protocol NewsViewModelType {
-    var didLoadData: ((NewsProps) -> Void)? { get set }
+    var didStateChanged: ((NewsProps) -> Void)? { get set }
     
     func refresh()
     func selectSegmentTab(index: Int) 
 }
 
 final class NewsViewModel: NewsViewModelType {
-
-    var didLoadData: ((NewsProps) -> Void)?
+    var didStateChanged: ((NewsProps) -> Void)?
 
     private let coordinator: NewsCoordinatorType
     private var newsService: NewsServiceType
@@ -34,6 +33,7 @@ final class NewsViewModel: NewsViewModelType {
 
     private var news: [NewsModel] = []
     private var selectedTab: NewsSegmentTab = .emailed
+    private var screenState: NewsProps.ScreenState = .initial
     
     init(_ coordinator: NewsCoordinatorType, serviceHolder: ServiceHolder) {
         self.coordinator = coordinator
@@ -42,16 +42,23 @@ final class NewsViewModel: NewsViewModelType {
         loadNews()
     }
     
+    private func setScreenState(_ state: NewsProps.ScreenState) {
+        screenState = state
+        updateProps()
+    }
+    
     private func loadNews() {
+        self.setScreenState(.loading)
+        
         switch selectedTab {
         case .emailed:
             newsService.loadEmailed { result in
                 switch result {
                 case .success(let result):
                     self.news = result
-                    self.updateProps()
+                    self.setScreenState(.loaded)
                 case .failure(let error):
-                    self.updateProps(error.localizedDescription)
+                    self.setScreenState(.failed(error.localizedDescription))
                 }
             }
         case .shared:
@@ -59,20 +66,19 @@ final class NewsViewModel: NewsViewModelType {
                 switch result {
                 case .success(let result):
                     self.news = result
-                    self.updateProps()
+                    self.setScreenState(.loaded)
                 case .failure(let error):
-                    self.updateProps(error.localizedDescription)
+                    self.setScreenState(.failed(error.localizedDescription))
                 }
             }
-            
         case .viewed:
             newsService.loadViewed { result in
                 switch result {
                 case .success(let result):
                     self.news = result
-                    self.updateProps()
+                    self.setScreenState(.loaded)
                 case .failure(let error):
-                    self.updateProps(error.localizedDescription)
+                    self.setScreenState(.failed(error.localizedDescription))
                 }
             }
         }
@@ -82,24 +88,13 @@ final class NewsViewModel: NewsViewModelType {
         loadNews()
     }
     
-    func updateProps(_ error: String? = nil) {
-        handleError(error) {
-            let props = NewsProps(
-                state: .loaded,
-                selectedTab: self.selectedTab,
-                items: self.createItems()
-            )
-            self.didLoadData?(props)
-        }
-    }
-    
-    private func handleError(_ error: String? = nil, completion: (() -> Void)?) -> Void {
-        if let error = error {
-            let props = NewsProps(state: .failed(error), selectedTab: self.selectedTab, items: self.createItems())
-            self.didLoadData?(props)
-        } else {
-            completion?()
-        }
+    func updateProps() {
+        let props = NewsProps(
+            state: self.screenState,
+            selectedTab: self.selectedTab,
+            items: self.createItems()
+        )
+        self.didStateChanged?(props)
     }
 
     private func createItems() -> [NewsTableViewCell.Props] {

@@ -8,5 +8,6 @@ target 'ViVNewsApp' do
   # Pods for ViVNewsApp
   pod 'Alamofire', '~> 4.9.0'
   pod 'AlamofireImage', '~> 3.5.2'
-  
+  pod 'NVActivityIndicatorView', '~> 4.8.0'
+
 end
