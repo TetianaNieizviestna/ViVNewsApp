@@ -10,7 +10,7 @@ import UIKit
 struct Storyboard {
     static let news = UIStoryboard(name: "News", bundle: nil)
     static let favourites = UIStoryboard(name: "Favourites", bundle: nil)
-    static let newsDetails = UIStoryboard(name: "NewsDetails", bundle: nil)
+    static let articleDetails = UIStoryboard(name: "Article", bundle: nil)
 }
 
 protocol StoryboardIdentifiable {

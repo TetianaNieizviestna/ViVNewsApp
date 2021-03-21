@@ -47,6 +47,10 @@
 		AB073D482607830E008F0F8E /* GenericDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D472607830E008F0F8E /* GenericDAO.swift */; };
 		AB073D4B260783DA008F0F8E /* CoreDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D4A260783DA008F0F8E /* CoreDataServices.swift */; };
 		AB073D4F26079194008F0F8E /* DataModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D4E26079194008F0F8E /* DataModelExtension.swift */; };
+		AB073D5326079D36008F0F8E /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB073D5226079D36008F0F8E /* Article.storyboard */; };
+		AB073D5626079EBB008F0F8E /* ArticleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D5526079EBB008F0F8E /* ArticleDetailsViewController.swift */; };
+		AB073D5D26079F14008F0F8E /* ArticleDetailsViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D5C26079F14008F0F8E /* ArticleDetailsViewModelType.swift */; };
+		AB073D6026079F86008F0F8E /* ArticleDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D5F26079F86008F0F8E /* ArticleDetailsCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +97,10 @@
 		AB073D472607830E008F0F8E /* GenericDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDAO.swift; sourceTree = "<group>"; };
 		AB073D4A260783DA008F0F8E /* CoreDataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServices.swift; sourceTree = "<group>"; };
 		AB073D4E26079194008F0F8E /* DataModelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelExtension.swift; sourceTree = "<group>"; };
+		AB073D5226079D36008F0F8E /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
+		AB073D5526079EBB008F0F8E /* ArticleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsViewController.swift; sourceTree = "<group>"; };
+		AB073D5C26079F14008F0F8E /* ArticleDetailsViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsViewModelType.swift; sourceTree = "<group>"; };
+		AB073D5F26079F86008F0F8E /* ArticleDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsCoordinator.swift; sourceTree = "<group>"; };
 		BC11A01A2BDB5A097236F2E7 /* Pods-ViVNewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViVNewsApp.debug.xcconfig"; path = "Target Support Files/Pods-ViVNewsApp/Pods-ViVNewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +175,7 @@
 		AB073C6226052478008F0F8E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				AB073D5126079D24008F0F8E /* ArticleDetails */,
 				AB073CAA260536F7008F0F8E /* Favourites */,
 				AB073CA026053679008F0F8E /* News */,
 			);
@@ -302,6 +311,17 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		AB073D5126079D24008F0F8E /* ArticleDetails */ = {
+			isa = PBXGroup;
+			children = (
+				AB073D5526079EBB008F0F8E /* ArticleDetailsViewController.swift */,
+				AB073D5C26079F14008F0F8E /* ArticleDetailsViewModelType.swift */,
+				AB073D5F26079F86008F0F8E /* ArticleDetailsCoordinator.swift */,
+				AB073D5226079D36008F0F8E /* Article.storyboard */,
+			);
+			path = ArticleDetails;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -362,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB073C5126052208008F0F8E /* LaunchScreen.storyboard in Resources */,
+				AB073D5326079D36008F0F8E /* Article.storyboard in Resources */,
 				AB073C4E26052208008F0F8E /* Assets.xcassets in Resources */,
 				AB073CA22605368C008F0F8E /* News.storyboard in Resources */,
 				AB073CAC26053707008F0F8E /* Favourites.storyboard in Resources */,
@@ -423,6 +444,7 @@
 				AB073D3E26078289008F0F8E /* CoreDataHelper.swift in Sources */,
 				AB073C7926052950008F0F8E /* NewsResponseModel.swift in Sources */,
 				AB073CA8260536EC008F0F8E /* NewsViewModel.swift in Sources */,
+				AB073D6026079F86008F0F8E /* ArticleDetailsCoordinator.swift in Sources */,
 				AB073CFA26067677008F0F8E /* NewsTableViewCell.swift in Sources */,
 				AB073D4B260783DA008F0F8E /* CoreDataServices.swift in Sources */,
 				AB073C7526052610008F0F8E /* NewsService.swift in Sources */,
@@ -430,6 +452,7 @@
 				AB073D0C2606BDF2008F0F8E /* UIView.swift in Sources */,
 				AB073C8826052D28008F0F8E /* TabItem.swift in Sources */,
 				AB073CAF2605372F008F0F8E /* FavouritesViewController.swift in Sources */,
+				AB073D5D26079F14008F0F8E /* ArticleDetailsViewModelType.swift in Sources */,
 				AB073CC3260628F0008F0F8E /* Style.swift in Sources */,
 				AB073CD626064492008F0F8E /* ViVAPIError.swift in Sources */,
 				AB073C9E260535E5008F0F8E /* Storyboard.swift in Sources */,
@@ -442,6 +465,7 @@
 				AB073C8C26052D56008F0F8E /* NewsCoordinator.swift in Sources */,
 				AB073C8426052BEE008F0F8E /* TabBarCoordinator.swift in Sources */,
 				AB073D4F26079194008F0F8E /* DataModelExtension.swift in Sources */,
+				AB073D5626079EBB008F0F8E /* ArticleDetailsViewController.swift in Sources */,
 				AB073CA5260536A1008F0F8E /* NewsViewController.swift in Sources */,
 				AB073C4526052207008F0F8E /* AppDelegate.swift in Sources */,
 				AB073D092606BA12008F0F8E /* Data.swift in Sources */,

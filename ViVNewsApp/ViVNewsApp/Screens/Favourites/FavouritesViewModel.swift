@@ -59,9 +59,7 @@ final class FavouritesViewModel: FavouritesViewModelType{
             imageUrl: getImage(from: newsModel),
             isFavorite: favouritesService.isFavourite(id: newsModel.id),
             onSelect: Command {
-                if let id = newsModel.id {
-                    self.coordinator.onNewsDetails(id: id)
-                }
+                self.coordinator.onNewsDetails(article: newsModel)
             }
         )
     }

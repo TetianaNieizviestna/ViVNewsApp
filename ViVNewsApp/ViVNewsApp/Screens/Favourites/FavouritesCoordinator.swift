@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavouritesCoordinatorType {
-    func onNewsDetails(id: Int)
+    func onNewsDetails(article: NewsModel)
 }
 
 final class FavouritesCoordinator: FavouritesCoordinatorType {
@@ -29,8 +29,8 @@ final class FavouritesCoordinator: FavouritesCoordinatorType {
         }
     }
     
-    func onNewsDetails(id: Int) {
-//        let coordinator = ArticleCoordinator()
-//        coordinator.start()
+    func onNewsDetails(article: NewsModel) {
+        let coordinator = ArticleDetailsCoordinator(navigationController: navigationController, serviceHolder: serviceHolder, article: article)
+        coordinator.start()
     }
 }

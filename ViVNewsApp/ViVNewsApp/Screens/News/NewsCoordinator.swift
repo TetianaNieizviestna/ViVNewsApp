@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NewsCoordinatorType {
-    func onNewsDetails(id: Int)
+    func onNewsDetails(article: NewsModel)
 }
 
 final class NewsCoordinator: NewsCoordinatorType {
@@ -29,7 +29,8 @@ final class NewsCoordinator: NewsCoordinatorType {
         }
     }
     
-    func onNewsDetails(id: Int) {
-        
+    func onNewsDetails(article: NewsModel) {
+        let coordinator = ArticleDetailsCoordinator(navigationController: navigationController, serviceHolder: serviceHolder, article: article)
+        coordinator.start()
     }
 }
