@@ -16,28 +16,31 @@ protocol FavouritesServiceType: Service {
 
 class FavouritesService: FavouritesServiceType {
     private var news: [NewsModel] = []
-     
+    init() {
+        news = getFavourites()
+    }
     func getFavourites() -> [NewsModel] {
-        // get from CoreData
-//        news = getFromCoreData()
+        CoreDataServices.read(NewsModelData.self, NewsModel.self) { array in
+            if let array = array {
+                self.news = array
+            }
+        }
         return news
     }
     
     func add(element: NewsModel) {
-        news.append(element)
-        updateCoreData()
+        CoreDataServices.create(element, NewsModelData.self)
+        news = getFavourites()
     }
     
     func remove(id: Int) {
-        news.removeAll { $0.id == id }
-        updateCoreData()
+        if let newsModel = news.first(where: { $0.id == id }) {
+            CoreDataServices.delete(newsModel, NewsModelData.self)
+        }
+        news = getFavourites()
     }
     
     func isFavourite(id: Int?) -> Bool {
         return news.contains { $0.id == id }
-    }
-    
-    private func updateCoreData() {
-//        CoreDataHelper.saveToCoreData(news)
     }
 }
