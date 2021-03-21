@@ -21,6 +21,7 @@ protocol NewsViewModelType {
     var didLoadData: ((NewsProps) -> Void)? { get set }
     
     func refresh()
+    func selectSegmentTab(index: Int) 
 }
 
 final class NewsViewModel: NewsViewModelType {
@@ -42,13 +43,37 @@ final class NewsViewModel: NewsViewModelType {
     }
     
     private func loadNews() {
-        newsService.loadEmailed { result in
-            switch result {
-            case .success(let result):
-                self.news = result
-                self.updateProps()
-            case .failure(let error):
-                self.updateProps(error.localizedDescription)
+        switch selectedTab {
+        case .emailed:
+            newsService.loadEmailed { result in
+                switch result {
+                case .success(let result):
+                    self.news = result
+                    self.updateProps()
+                case .failure(let error):
+                    self.updateProps(error.localizedDescription)
+                }
+            }
+        case .shared:
+            newsService.loadShared { result in
+                switch result {
+                case .success(let result):
+                    self.news = result
+                    self.updateProps()
+                case .failure(let error):
+                    self.updateProps(error.localizedDescription)
+                }
+            }
+            
+        case .viewed:
+            newsService.loadViewed { result in
+                switch result {
+                case .success(let result):
+                    self.news = result
+                    self.updateProps()
+                case .failure(let error):
+                    self.updateProps(error.localizedDescription)
+                }
             }
         }
     }
@@ -116,5 +141,10 @@ final class NewsViewModel: NewsViewModelType {
             return firstImage.url
         }
         return nil
+    }
+    
+    func selectSegmentTab(index: Int) {
+        selectedTab = NewsSegmentTab(rawValue: index) ?? .emailed
+        loadNews()
     }
 }

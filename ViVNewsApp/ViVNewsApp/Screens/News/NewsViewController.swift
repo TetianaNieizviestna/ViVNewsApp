@@ -61,6 +61,12 @@ final class NewsViewController: UIViewController {
         segmentedControl.setTitleTextAttributes(textAttributes, for: .normal)
         segmentedControl.selectedSegmentTintColor = Style.Color.segmentBg
         segmentedControl.backgroundColor = Style.Color.segmentBgSelected
+        segmentedControl.addTarget(self, action: #selector(segmentIndexChanged), for: .valueChanged)
+    }
+    
+    @objc
+    private func segmentIndexChanged() {
+        viewModel.selectSegmentTab(index: segmentedControl.selectedSegmentIndex)
     }
     
     private func setupTableView() {

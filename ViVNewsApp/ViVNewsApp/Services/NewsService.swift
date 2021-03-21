@@ -19,11 +19,10 @@ protocol NewsServiceType: Service {
 }
 
 class NewsService: NewsServiceType {
+    private let period = 30
     private var newsModels: [NewsModel] = []
 
     func loadEmailed(completion: NewsEmailedResponse) {
-        let period = 30
-        
         guard let url = URL(string: "\(ApiPath.emailed.string)/\(period).json?api-key=\(Defines.API.apiKey)") else {
             completion?(.failure(ViVAPIError.urlError))
             return
@@ -55,8 +54,66 @@ class NewsService: NewsServiceType {
     }
     
     func loadShared(completion: NewsEmailedResponse) {
+        guard let url = URL(string: "\(ApiPath.shared.string)/\(period).json?api-key=\(Defines.API.apiKey)") else {
+            completion?(.failure(ViVAPIError.urlError))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        Alamofire.request(request).validate().responseJSON { (response) in
+            guard let httpResponse = response.response else {
+                completion?(.failure(ViVAPIError.notMapError))
+                return
+            }
+            let httpStatusCode = httpResponse.statusCode
+            let acceptebleStatusCodes = IndexSet(integersIn: 200...300)
+            if let error = response.error, !acceptebleStatusCodes.contains(httpStatusCode) {
+                completion?(.failure(error))
+            } else if let data = response.data {
+                do {
+                    let result = try JSONDecoder().decode(NewsResponseModel.self, from: data)
+                    self.newsModels = result.results
+                    completion?(.success(self.newsModels))
+                } catch {
+                    completion?(.failure(error))
+                }
+            } else {
+                completion?(.failure(ViVAPIError.notMapError))
+            }
+        }
+
     }
     
     func loadViewed(completion: NewsEmailedResponse) {
+        guard let url = URL(string: "\(ApiPath.viewed.string)/\(period).json?api-key=\(Defines.API.apiKey)") else {
+            completion?(.failure(ViVAPIError.urlError))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        Alamofire.request(request).validate().responseJSON { (response) in
+            guard let httpResponse = response.response else {
+                completion?(.failure(ViVAPIError.notMapError))
+                return
+            }
+            let httpStatusCode = httpResponse.statusCode
+            let acceptebleStatusCodes = IndexSet(integersIn: 200...300)
+            if let error = response.error, !acceptebleStatusCodes.contains(httpStatusCode) {
+                completion?(.failure(error))
+            } else if let data = response.data {
+                do {
+                    let result = try JSONDecoder().decode(NewsResponseModel.self, from: data)
+                    self.newsModels = result.results
+                    completion?(.success(self.newsModels))
+                } catch {
+                    completion?(.failure(error))
+                }
+            } else {
+                completion?(.failure(ViVAPIError.notMapError))
+            }
+        }
+
     }
 }
