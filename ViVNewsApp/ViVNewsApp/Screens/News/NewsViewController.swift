@@ -116,6 +116,4 @@ extension NewsViewController: UITableViewDataSource {
         cell.render(props.items[indexPath.row])
         return cell
     }
-    
-    
 }

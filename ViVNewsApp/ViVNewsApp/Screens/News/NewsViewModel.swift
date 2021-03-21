@@ -110,7 +110,6 @@ final class NewsViewModel: NewsViewModelType {
             description: newsModel.abstract ?? "",
             imageUrl: getImage(from: newsModel),
             isFavorite: favouritesService.isFavourite(id: newsModel.id),
-            type: self.selectedTab,
             onSelect: Command {
                 if let id = newsModel.id {
                     self.coordinator.onNewsDetails(id: id)

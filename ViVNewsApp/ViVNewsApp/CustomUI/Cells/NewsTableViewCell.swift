@@ -16,11 +16,10 @@ class NewsTableViewCell: UITableViewCell {
         let description: String
         let imageUrl: String?
         let isFavorite: Bool
-        let type: NewsSegmentTab
         
         let onSelect: Command
         
-        static let initial: Props = .init(title: "", author: "", source: "", date: "", description: "", imageUrl: nil, isFavorite: false, type: .emailed, onSelect: .nop)
+        static let initial: Props = .init(title: "", author: "", source: "", date: "", description: "", imageUrl: nil, isFavorite: false, onSelect: .nop)
     }
 
     @IBOutlet private var bgView: UIView!
