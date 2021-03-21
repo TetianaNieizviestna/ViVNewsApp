@@ -49,8 +49,9 @@
 		AB073D4F26079194008F0F8E /* DataModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D4E26079194008F0F8E /* DataModelExtension.swift */; };
 		AB073D5326079D36008F0F8E /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB073D5226079D36008F0F8E /* Article.storyboard */; };
 		AB073D5626079EBB008F0F8E /* ArticleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D5526079EBB008F0F8E /* ArticleDetailsViewController.swift */; };
-		AB073D5D26079F14008F0F8E /* ArticleDetailsViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D5C26079F14008F0F8E /* ArticleDetailsViewModelType.swift */; };
+		AB073D5D26079F14008F0F8E /* ArticleDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D5C26079F14008F0F8E /* ArticleDetailsViewModel.swift */; };
 		AB073D6026079F86008F0F8E /* ArticleDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D5F26079F86008F0F8E /* ArticleDetailsCoordinator.swift */; };
+		AB073D642607EF19008F0F8E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB073D632607EF19008F0F8E /* UIApplication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,8 +100,9 @@
 		AB073D4E26079194008F0F8E /* DataModelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelExtension.swift; sourceTree = "<group>"; };
 		AB073D5226079D36008F0F8E /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
 		AB073D5526079EBB008F0F8E /* ArticleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsViewController.swift; sourceTree = "<group>"; };
-		AB073D5C26079F14008F0F8E /* ArticleDetailsViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsViewModelType.swift; sourceTree = "<group>"; };
+		AB073D5C26079F14008F0F8E /* ArticleDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsViewModel.swift; sourceTree = "<group>"; };
 		AB073D5F26079F86008F0F8E /* ArticleDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsCoordinator.swift; sourceTree = "<group>"; };
+		AB073D632607EF19008F0F8E /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		BC11A01A2BDB5A097236F2E7 /* Pods-ViVNewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViVNewsApp.debug.xcconfig"; path = "Target Support Files/Pods-ViVNewsApp/Pods-ViVNewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,6 +234,7 @@
 				AB073D0126069F14008F0F8E /* Date.swift */,
 				AB073D082606BA12008F0F8E /* Data.swift */,
 				AB073D0B2606BDF2008F0F8E /* UIView.swift */,
+				AB073D632607EF19008F0F8E /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,7 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				AB073D5526079EBB008F0F8E /* ArticleDetailsViewController.swift */,
-				AB073D5C26079F14008F0F8E /* ArticleDetailsViewModelType.swift */,
+				AB073D5C26079F14008F0F8E /* ArticleDetailsViewModel.swift */,
 				AB073D5F26079F86008F0F8E /* ArticleDetailsCoordinator.swift */,
 				AB073D5226079D36008F0F8E /* Article.storyboard */,
 			);
@@ -447,12 +450,13 @@
 				AB073D6026079F86008F0F8E /* ArticleDetailsCoordinator.swift in Sources */,
 				AB073CFA26067677008F0F8E /* NewsTableViewCell.swift in Sources */,
 				AB073D4B260783DA008F0F8E /* CoreDataServices.swift in Sources */,
+				AB073D642607EF19008F0F8E /* UIApplication.swift in Sources */,
 				AB073C7526052610008F0F8E /* NewsService.swift in Sources */,
 				AB073CB5260537A4008F0F8E /* FavouritesCoordinator.swift in Sources */,
 				AB073D0C2606BDF2008F0F8E /* UIView.swift in Sources */,
 				AB073C8826052D28008F0F8E /* TabItem.swift in Sources */,
 				AB073CAF2605372F008F0F8E /* FavouritesViewController.swift in Sources */,
-				AB073D5D26079F14008F0F8E /* ArticleDetailsViewModelType.swift in Sources */,
+				AB073D5D26079F14008F0F8E /* ArticleDetailsViewModel.swift in Sources */,
 				AB073CC3260628F0008F0F8E /* Style.swift in Sources */,
 				AB073CD626064492008F0F8E /* ViVAPIError.swift in Sources */,
 				AB073C9E260535E5008F0F8E /* Storyboard.swift in Sources */,

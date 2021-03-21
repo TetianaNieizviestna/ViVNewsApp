@@ -36,16 +36,12 @@ final class AppCoordinator {
     }
     
     func start() {
-        navigationController = UINavigationController()
-        
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
-        
         tabBarCoordinator = TabBarCoordinator(window: window, serviceHolder: serviceHolder)
         let items: [TabItem] = [
             .news(NewsCoordinator(navigationController: navigationController, serviceHolder: serviceHolder)),
             .favourites(FavouritesCoordinator(navigationController: navigationController, serviceHolder: serviceHolder))
         ]
+
         tabBarCoordinator?.start(with: items)
     }
 }

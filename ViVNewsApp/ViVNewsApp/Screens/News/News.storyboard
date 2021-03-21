@@ -40,7 +40,7 @@
                                 <color key="selectedSegmentTintColor" red="0.0" green="0.0" blue="0.19607843137254902" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="deviceRGB"/>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sHU-Gz-KET">
-                                <rect key="frame" x="15" y="129" width="384" height="718"/>
+                                <rect key="frame" x="15" y="129" width="384" height="733"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -49,7 +49,7 @@
                         <constraints>
                             <constraint firstItem="sHU-Gz-KET" firstAttribute="leading" secondItem="R4B-ho-pxa" secondAttribute="leading" constant="15" id="AbG-UH-eiZ"/>
                             <constraint firstItem="4Y5-Zw-dde" firstAttribute="leading" secondItem="XDO-BX-Oyb" secondAttribute="leading" id="CtC-6l-9Ox"/>
-                            <constraint firstItem="R4B-ho-pxa" firstAttribute="bottom" secondItem="sHU-Gz-KET" secondAttribute="bottom" constant="15" id="bMi-Gg-0ae"/>
+                            <constraint firstItem="R4B-ho-pxa" firstAttribute="bottom" secondItem="sHU-Gz-KET" secondAttribute="bottom" id="bMi-Gg-0ae"/>
                             <constraint firstItem="4Y5-Zw-dde" firstAttribute="top" secondItem="XDO-BX-Oyb" secondAttribute="bottom" constant="5" id="cdP-oN-gBx"/>
                             <constraint firstItem="sHU-Gz-KET" firstAttribute="top" secondItem="4Y5-Zw-dde" secondAttribute="bottom" constant="5" id="ckk-rS-BsR"/>
                             <constraint firstItem="XDO-BX-Oyb" firstAttribute="leading" secondItem="R4B-ho-pxa" secondAttribute="leading" constant="15" id="dFA-mm-sWb"/>

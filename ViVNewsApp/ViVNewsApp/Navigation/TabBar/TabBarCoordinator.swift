@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol TabBarItemCoordinator {
-    var tabBarItem: UITabBarItem { get }
-    var root: UINavigationController { get set }
-}
-
 final class TabBarCoordinator {
     private let window: UIWindow
     private var rootController: UITabBarController?

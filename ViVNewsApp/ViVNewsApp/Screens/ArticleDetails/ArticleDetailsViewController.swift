@@ -10,7 +10,6 @@ import WebKit
 
 extension ArticleDetailsViewController {
     struct Props {
-        
         let state: ScreenState; enum ScreenState {
             case initial
             case failed(String)
@@ -18,7 +17,10 @@ extension ArticleDetailsViewController {
                 
         let url: String
         
-        static let initial: Props = .init(state: .initial, url: "")
+        let onBack: Command
+        let onFavourite: Command
+        
+        static let initial: Props = .init(state: .initial, url: "", onBack: .nop, onFavourite: .nop)
     }
 }
 

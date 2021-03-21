@@ -7,7 +7,9 @@
 
 import UIKit
 
-protocol ArticleDetailsCoordinatorType {}
+protocol ArticleDetailsCoordinatorType {
+    func dissmiss()
+}
 
 final class ArticleDetailsCoordinator: ArticleDetailsCoordinatorType {
     weak var controller: ArticleDetailsViewController? = Storyboard.articleDetails.instantiateViewController()
@@ -23,10 +25,16 @@ final class ArticleDetailsCoordinator: ArticleDetailsCoordinatorType {
     
     func start() {
         if let controller = controller {
-//            navigationController?.pushViewController(controller, animated: false)
             controller.modalTransitionStyle = .coverVertical
             controller.modalPresentationStyle = .overFullScreen
-            navigationController?.present(controller, animated: true)
+            
+            UIApplication.topViewController()?.present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    func dissmiss() {
+        if let controller = controller {
+            controller.dismiss(animated: false)
         }
     }
 }

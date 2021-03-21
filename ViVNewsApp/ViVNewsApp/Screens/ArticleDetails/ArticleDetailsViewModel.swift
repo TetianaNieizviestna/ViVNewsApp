@@ -1,5 +1,5 @@
 //
-//  ArticleDetailsViewModelType.swift
+//  ArticleDetailsViewModel.swift
 //  ViVNewsApp
 //
 //  Created by Tetiana Nieizviestna on 21.03.2021.
@@ -37,7 +37,13 @@ final class ArticleDetailsViewModel: ArticleDetailsViewModelType{
     func updateProps() {
         let props = ArticleProps(
             state: self.screenState,
-            url: newsModel.url ?? ""
+            url: newsModel.url ?? "",
+            onBack: Command {
+                self.coordinator.dissmiss()
+            },
+            onFavourite: Command {
+                self.changeFavouritesState()
+            }
         )
         self.didStateChanged?(props)
     }
