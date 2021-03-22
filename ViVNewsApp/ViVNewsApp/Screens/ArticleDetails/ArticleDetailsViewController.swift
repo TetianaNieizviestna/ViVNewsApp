@@ -8,6 +8,10 @@
 import UIKit
 import WebKit
 
+protocol ArticleScreenDelegate: AnyObject {
+    func didChangedFavourites()
+}
+
 extension ArticleDetailsViewController {
     struct Props {
         let url: String
@@ -23,7 +27,8 @@ extension ArticleDetailsViewController {
 final class ArticleDetailsViewController: UIViewController {
     var viewModel: ArticleDetailsViewModelType!
     var props: Props = .initial
-
+    weak var delegate: ArticleScreenDelegate?
+    
     @IBOutlet private var backBtn: UIButton!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var favouritesBtn: UIButton!
@@ -67,6 +72,6 @@ final class ArticleDetailsViewController: UIViewController {
     
     @IBAction func favouritesBtnAction(_ sender: UIButton) {
         self.props.onFavourite.perform()
+        self.delegate?.didChangedFavourites()
     }
-    
 }

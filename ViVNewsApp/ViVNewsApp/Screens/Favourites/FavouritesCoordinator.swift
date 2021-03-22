@@ -54,6 +54,6 @@ final class FavouritesCoordinator: FavouritesCoordinatorType {
     
     func onNewsDetails(article: NewsModel) {
         let coordinator = ArticleDetailsCoordinator(navigationController: navigationController, serviceHolder: serviceHolder, article: article)
-        coordinator.start()
+        coordinator.start(with: controller)
     }
 }

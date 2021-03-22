@@ -26,10 +26,11 @@ final class ArticleDetailsCoordinator: ArticleDetailsCoordinatorType {
         controller?.viewModel = ArticleDetailsViewModel(self, serviceHolder: self.serviceHolder, article: article)
     }
     
-    func start() {
+    func start(with delegate: ArticleScreenDelegate?) {
         if let controller = controller {
             controller.modalTransitionStyle = .coverVertical
             controller.modalPresentationStyle = .overFullScreen
+            controller.delegate = delegate
             navigationController?.present(controller, animated: true, completion: nil)
         }
     }

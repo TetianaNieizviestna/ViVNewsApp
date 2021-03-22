@@ -43,6 +43,11 @@ final class NewsViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.refresh()
+    }
+    
     private func setupUI() {
         setupSegmentedControl()
         setupTableView()
@@ -114,5 +119,11 @@ extension NewsViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier) as? NewsTableViewCell else { return UITableViewCell() }
         cell.render(props.items[indexPath.row])
         return cell
+    }
+}
+
+extension NewsViewController: ArticleScreenDelegate {
+    func didChangedFavourites() {
+        self.props.onRefresh.perform()
     }
 }

@@ -76,3 +76,9 @@ extension FavouritesViewController: UITableViewDataSource {
         return cell
     }
 }
+
+extension FavouritesViewController: ArticleScreenDelegate {
+    func didChangedFavourites() {
+        self.props.onRefresh.perform()
+    }
+}

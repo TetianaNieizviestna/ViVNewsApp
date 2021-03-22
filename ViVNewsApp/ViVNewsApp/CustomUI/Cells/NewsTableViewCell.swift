@@ -38,7 +38,12 @@ class NewsTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         loadedImageView.image = nil
+        titleLabel.text = nil
+        descriptionLabel.text = nil
+        dateLabel.text = nil
+        favouritesImageView.image = nil
     }
+    
     private func setupUI() {
         loadedImageView.setCornersRadius(6)
         bgView.setCornersRadius(6)
@@ -58,6 +63,10 @@ class NewsTableViewCell: UITableViewCell {
         if loadedImageView.image == nil {
             self.imageViewWidthConstraint.constant = 0
             self.imageViewTrailingConstraint.constant = 0
+        } else {
+            self.imageViewWidthConstraint.constant = 80
+            self.imageViewTrailingConstraint.constant = 5
+
         }
     }
 }

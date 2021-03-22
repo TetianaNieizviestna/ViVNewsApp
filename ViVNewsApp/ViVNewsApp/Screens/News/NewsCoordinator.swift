@@ -47,14 +47,13 @@ final class NewsCoordinator: NewsCoordinatorType {
     
     func start() {
         if let controller = controller {
-//            controller.viewModel = NewsViewModel(self, serviceHolder: self.serviceHolder)
             navigationController?.pushViewController(controller, animated: false)
         }
     }
     
     func onNewsDetails(article: NewsModel) {
         let coordinator = ArticleDetailsCoordinator(navigationController: navigationController, serviceHolder: serviceHolder, article: article)
-        coordinator.start()
+        coordinator.start(with: controller)
     }
 }
 

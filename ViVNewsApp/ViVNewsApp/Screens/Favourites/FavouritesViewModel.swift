@@ -30,7 +30,6 @@ final class FavouritesViewModel: FavouritesViewModelType{
     func loadNews() {
         news = FavouritesService.getFavourites()
         updateProps()
-        print("Loading")
     }
     
     func updateProps() {
