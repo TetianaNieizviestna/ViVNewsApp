@@ -11,6 +11,8 @@ typealias FavouritesProps = FavouritesViewController.Props
 
 protocol FavouritesViewModelType {
     var didStateChanged: ((FavouritesProps) -> Void)? { get set }
+    
+    func loadNews()
 }
 
 final class FavouritesViewModel: FavouritesViewModelType{
@@ -25,7 +27,7 @@ final class FavouritesViewModel: FavouritesViewModelType{
         loadNews()
     }
     
-    private func loadNews() {
+    func loadNews() {
         news = FavouritesService.getFavourites()
         updateProps()
         print("Loading")

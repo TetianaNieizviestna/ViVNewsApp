@@ -34,7 +34,7 @@ final class FavouritesViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        props.onRefresh.perform()
+        viewModel.loadNews()
     }
     
     private func setupUI() {
