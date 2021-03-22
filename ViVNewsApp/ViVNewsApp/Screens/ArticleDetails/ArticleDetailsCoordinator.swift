@@ -30,8 +30,7 @@ final class ArticleDetailsCoordinator: ArticleDetailsCoordinatorType {
         if let controller = controller {
             controller.modalTransitionStyle = .coverVertical
             controller.modalPresentationStyle = .overFullScreen
-
-            UIApplication.topViewController()?.present(controller, animated: true, completion: nil)
+            navigationController?.present(controller, animated: true, completion: nil)
         }
     }
     

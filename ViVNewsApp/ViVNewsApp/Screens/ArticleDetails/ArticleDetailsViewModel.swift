@@ -16,13 +16,11 @@ final class ArticleDetailsViewModel: ArticleDetailsViewModelType{
     var didStateChanged: ((ArticleProps) -> Void)?
 
     private let coordinator: ArticleDetailsCoordinatorType
-    private var favouritesService: FavouritesServiceType
     
     private var newsModel: NewsModel
 
     init(_ coordinator: ArticleDetailsCoordinatorType, serviceHolder: ServiceHolder, article: NewsModel) {
         self.coordinator = coordinator
-        favouritesService = serviceHolder.get(by: FavouritesServiceType.self)
         self.newsModel = article
         self.updateProps()
     }
@@ -30,7 +28,7 @@ final class ArticleDetailsViewModel: ArticleDetailsViewModelType{
     func updateProps() {
         let props = ArticleProps(
             url: newsModel.url ?? "",
-            isFavourite: favouritesService.isFavourite(id: newsModel.id),
+            isFavourite: FavouritesService.isFavourite(id: newsModel.id),
             onBack: Command {
                 self.coordinator.dismiss()
             },
@@ -45,10 +43,10 @@ final class ArticleDetailsViewModel: ArticleDetailsViewModelType{
     
     func changeFavouritesState() {
         if let id = newsModel.id {
-            if  favouritesService.isFavourite(id: id) {
-                favouritesService.remove(id: id)
+            if FavouritesService.isFavourite(id: id) {
+                FavouritesService.remove(id: id)
             } else {
-                favouritesService.add(element: newsModel)
+                FavouritesService.add(element: newsModel)
             }
         }
         updateProps()

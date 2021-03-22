@@ -12,8 +12,8 @@ enum TabItem: Equatable {
         return lhs.index == rhs.index
     }
     
-    case news(NewsCoordinator)
-    case favourites(FavouritesCoordinator)
+    case news(TabBarItemCoordinatorType)
+    case favourites(TabBarItemCoordinatorType)
     
     var item: UITabBarItem {
         let item = UITabBarItem(title: displayTitle, image: icon, selectedImage: iconFill)
@@ -36,8 +36,8 @@ enum TabItem: Equatable {
         }
     }
     
-    var controller: UIViewController? {
-        var controller: UIViewController?
+    var controller: UINavigationController? {
+        var controller: UINavigationController?
         switch self {
         case .news(let coordinator):
              controller = coordinator.controller

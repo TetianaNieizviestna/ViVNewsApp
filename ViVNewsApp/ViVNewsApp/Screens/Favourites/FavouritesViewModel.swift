@@ -17,29 +17,25 @@ final class FavouritesViewModel: FavouritesViewModelType{
     var didStateChanged: ((FavouritesProps) -> Void)?
 
     private let coordinator: FavouritesCoordinatorType
-    private var favouritesService: FavouritesServiceType
     
     private var news: [NewsModel] = []
-    private var screenState: FavouritesProps.ScreenState = .initial
-
+    
     init(_ coordinator: FavouritesCoordinatorType, serviceHolder: ServiceHolder) {
         self.coordinator = coordinator
-        favouritesService = serviceHolder.get(by: FavouritesServiceType.self)
         loadNews()
     }
     
-    private func setScreenState(_ state: FavouritesProps.ScreenState) {
-        screenState = state
-        updateProps()
-    }
-    
     private func loadNews() {
-        self.news = favouritesService.getFavourites()
+        news = FavouritesService.getFavourites()
+        updateProps()
+        print("Loading")
     }
     
     func updateProps() {
         let props = FavouritesProps(
-            state: self.screenState,
+            onRefresh: Command {
+                self.loadNews()
+            },
             items: self.createItems()
         )
         DispatchQueue.main.async {
@@ -59,7 +55,7 @@ final class FavouritesViewModel: FavouritesViewModelType{
             date: Date.getFormattedDateString(string: newsModel.publishedDate ?? ""),
             description: newsModel.abstract ?? "",
             imageUrl: getImage(from: newsModel),
-            isFavorite: favouritesService.isFavourite(id: newsModel.id),
+            isFavorite: FavouritesService.isFavourite(id: newsModel.id),
             onSelect: Command {
                 self.coordinator.onNewsDetails(article: newsModel)
             }

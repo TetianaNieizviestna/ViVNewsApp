@@ -29,7 +29,6 @@ final class NewsViewModel: NewsViewModelType {
 
     private let coordinator: NewsCoordinatorType
     private var newsService: NewsServiceType
-    private var favouritesService: FavouritesServiceType
 
     private var news: [NewsModel] = []
     private var selectedTab: NewsSegmentTab = .emailed
@@ -38,7 +37,6 @@ final class NewsViewModel: NewsViewModelType {
     init(_ coordinator: NewsCoordinatorType, serviceHolder: ServiceHolder) {
         self.coordinator = coordinator
         newsService = serviceHolder.get(by: NewsServiceType.self)
-        favouritesService = serviceHolder.get(by: FavouritesServiceType.self)
         loadNews()
     }
     
@@ -100,7 +98,7 @@ final class NewsViewModel: NewsViewModelType {
             date: Date.getFormattedDateString(string: newsModel.publishedDate ?? ""),
             description: newsModel.abstract ?? "",
             imageUrl: getImage(from: newsModel),
-            isFavorite: favouritesService.isFavourite(id: newsModel.id),
+            isFavorite: FavouritesService.isFavourite(id: newsModel.id),
             onSelect: Command {
                 self.coordinator.onNewsDetails(article: newsModel)
             }
@@ -124,6 +122,9 @@ final class NewsViewModel: NewsViewModelType {
         let props = NewsProps(
             state: self.screenState,
             selectedTab: self.selectedTab,
+            onRefresh: Command {
+                self.refresh()
+            },
             items: self.createItems()
         )
         DispatchQueue.main.async {

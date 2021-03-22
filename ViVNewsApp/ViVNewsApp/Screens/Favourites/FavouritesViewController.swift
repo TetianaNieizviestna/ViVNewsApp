@@ -9,16 +9,10 @@ import UIKit
 
 extension FavouritesViewController {
     struct Props {
-        
-        let state: ScreenState; enum ScreenState {
-            case initial
-            case loading
-            case loaded
-            case failed(String)
-        }
-                
+        let onRefresh: Command
+
         let items: [NewsTableViewCell.Props]
-        static let initial: Props = .init(state: .initial, items: [])
+        static let initial: Props = .init(onRefresh: .nop, items: [])
     }
 }
 
@@ -32,11 +26,15 @@ final class FavouritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+
         viewModel.didStateChanged = { [weak self] props in
             self?.render(props)
         }
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        props.onRefresh.perform()
     }
     
     private func setupUI() {
@@ -47,22 +45,16 @@ final class FavouritesViewController: UIViewController {
         tableView.setDataSource(self, delegate: self)
         tableView.register([NewsTableViewCell.identifier])
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.reloadData()
     }
-
+    
+    @objc func refresh(_ sender: AnyObject) {
+        self.props.onRefresh.perform()
+    }
+    
     func render(_ props: Props) {
         self.props = props
 
-        switch props.state {
-        case .initial:
-            view.stopHud()
-        case .loading:
-            view.startHud()
-        case .loaded:
-            view.stopHud()
-        case .failed(let error):
-            view.stopHud()
-            showAlert(title: "Error", message: error)
-        }
         self.tableView.reloadData()
     }
 }

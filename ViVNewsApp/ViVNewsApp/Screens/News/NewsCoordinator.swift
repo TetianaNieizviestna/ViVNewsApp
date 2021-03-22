@@ -7,6 +7,27 @@
 
 import UIKit
 
+protocol NewsTabCoordinatorType {}
+
+class NewsTabCoordinator: NSObject, NewsTabCoordinatorType, TabBarItemCoordinatorType {
+    
+    let controller = UINavigationController()
+
+    private var serviceHolder: ServiceHolder
+    private var newsCoordinator: NewsCoordinator?
+    
+    init(serviceHolder: ServiceHolder) {
+        self.serviceHolder = serviceHolder
+    }
+    
+    func start() {
+        controller.navigationBar.isTranslucent = false
+        
+        newsCoordinator = NewsCoordinator(navigationController: controller, serviceHolder: serviceHolder)
+        newsCoordinator?.start()
+    }
+}
+
 protocol NewsCoordinatorType {
     func onNewsDetails(article: NewsModel)
 }
@@ -19,12 +40,14 @@ final class NewsCoordinator: NewsCoordinatorType {
     init(navigationController: UINavigationController?, serviceHolder: ServiceHolder) {
         self.navigationController = navigationController
         self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isHidden = true
         self.serviceHolder = serviceHolder
         controller?.viewModel = NewsViewModel(self, serviceHolder: self.serviceHolder)
     }
     
     func start() {
         if let controller = controller {
+//            controller.viewModel = NewsViewModel(self, serviceHolder: self.serviceHolder)
             navigationController?.pushViewController(controller, animated: false)
         }
     }
@@ -34,3 +57,4 @@ final class NewsCoordinator: NewsCoordinatorType {
         coordinator.start()
     }
 }
+

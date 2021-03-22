@@ -18,9 +18,10 @@ extension NewsViewController {
         }
         
         let selectedTab: NewsSegmentTab
+        let onRefresh: Command
         
         let items: [NewsTableViewCell.Props]
-        static let initial: Props = .init(state: .initial, selectedTab: .emailed, items: [])
+        static let initial: Props = .init(state: .initial, selectedTab: .emailed, onRefresh: .nop, items: [])
     }
 }
 
@@ -74,7 +75,7 @@ final class NewsViewController: UIViewController {
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        viewModel.refresh()
+        props.onRefresh.perform()
     }
     
     func render(_ props: Props) {

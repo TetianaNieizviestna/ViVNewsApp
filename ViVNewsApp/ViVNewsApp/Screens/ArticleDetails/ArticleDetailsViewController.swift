@@ -50,6 +50,11 @@ final class ArticleDetailsViewController: UIViewController {
     func render(_ props: Props) {
         self.props = props
         favouritesBtn.isSelected = props.isFavourite
+        if props.isFavourite {
+            favouritesBtn.setImage(Style.Image.favouriteSelected, for: .selected)
+        } else {
+            favouritesBtn.setImage(Style.Image.favourite, for: .normal)
+        }
         
         if let url = URL(string: props.url){
             webView.load(URLRequest(url: url))

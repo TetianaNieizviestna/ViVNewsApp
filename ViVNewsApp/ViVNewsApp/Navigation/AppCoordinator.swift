@@ -15,7 +15,6 @@ final class AppCoordinator {
     private var serviceHolder: ServiceHolder!
 
     private var newsService: NewsService!
-    private var favouritesService: FavouritesService!
 
     private var tabBarCoordinator: TabBarCoordinator?
 
@@ -29,19 +28,12 @@ final class AppCoordinator {
         serviceHolder = ServiceHolder()
         
         newsService = NewsService()
-        favouritesService = FavouritesService()
         
         serviceHolder.add(NewsServiceType.self, for: newsService)
-        serviceHolder.add(FavouritesServiceType.self, for: favouritesService)
     }
     
     func start() {
         tabBarCoordinator = TabBarCoordinator(window: window, serviceHolder: serviceHolder)
-        let items: [TabItem] = [
-            .news(NewsCoordinator(navigationController: navigationController, serviceHolder: serviceHolder)),
-            .favourites(FavouritesCoordinator(navigationController: navigationController, serviceHolder: serviceHolder))
-        ]
-
-        tabBarCoordinator?.start(with: items)
+        tabBarCoordinator?.start()
     }
 }
