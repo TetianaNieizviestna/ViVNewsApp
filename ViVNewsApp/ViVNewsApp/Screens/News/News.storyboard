@@ -16,17 +16,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDO-BX-Oyb">
-                                <rect key="frame" x="122" y="291" width="43" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDO-BX-Oyb">
+                                <rect key="frame" x="15" y="59" width="384" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ns0-Pa-wSA"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4Y5-Zw-dde">
+                                <rect key="frame" x="15" y="94" width="384" height="31"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.19607843137254902" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="TRG-nw-v3C"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Emailed"/>
+                                    <segment title="Most Shared"/>
+                                    <segment title="Most Viewed"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="selectedSegmentTintColor" red="0.0" green="0.0" blue="0.19607843137254902" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="deviceRGB"/>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sHU-Gz-KET">
+                                <rect key="frame" x="15" y="129" width="384" height="733"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="R4B-ho-pxa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sHU-Gz-KET" firstAttribute="leading" secondItem="R4B-ho-pxa" secondAttribute="leading" constant="15" id="AbG-UH-eiZ"/>
+                            <constraint firstItem="4Y5-Zw-dde" firstAttribute="leading" secondItem="XDO-BX-Oyb" secondAttribute="leading" id="CtC-6l-9Ox"/>
+                            <constraint firstItem="R4B-ho-pxa" firstAttribute="bottom" secondItem="sHU-Gz-KET" secondAttribute="bottom" id="bMi-Gg-0ae"/>
+                            <constraint firstItem="4Y5-Zw-dde" firstAttribute="top" secondItem="XDO-BX-Oyb" secondAttribute="bottom" constant="5" id="cdP-oN-gBx"/>
+                            <constraint firstItem="sHU-Gz-KET" firstAttribute="top" secondItem="4Y5-Zw-dde" secondAttribute="bottom" constant="5" id="ckk-rS-BsR"/>
+                            <constraint firstItem="XDO-BX-Oyb" firstAttribute="leading" secondItem="R4B-ho-pxa" secondAttribute="leading" constant="15" id="dFA-mm-sWb"/>
+                            <constraint firstItem="R4B-ho-pxa" firstAttribute="trailing" secondItem="sHU-Gz-KET" secondAttribute="trailing" constant="15" id="gD6-Ll-Daw"/>
+                            <constraint firstItem="4Y5-Zw-dde" firstAttribute="trailing" secondItem="XDO-BX-Oyb" secondAttribute="trailing" id="k1V-dW-zzy"/>
+                            <constraint firstItem="XDO-BX-Oyb" firstAttribute="top" secondItem="R4B-ho-pxa" secondAttribute="top" constant="15" id="oOI-Ga-vlS"/>
+                            <constraint firstItem="R4B-ho-pxa" firstAttribute="trailing" secondItem="XDO-BX-Oyb" secondAttribute="trailing" constant="15" id="qkL-wD-9tk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="segmentedControl" destination="4Y5-Zw-dde" id="Vbj-SU-sLu"/>
+                        <outlet property="tableView" destination="sHU-Gz-KET" id="tdw-T6-eSU"/>
+                        <outlet property="titleLabel" destination="XDO-BX-Oyb" id="S53-BH-18U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orV-fw-RYf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

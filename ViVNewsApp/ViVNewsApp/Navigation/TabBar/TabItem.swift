@@ -12,8 +12,20 @@ enum TabItem: Equatable {
         return lhs.index == rhs.index
     }
     
-    case news(NewsCoordinator)
-    case favourites(FavouritesCoordinator)
+    case news(TabBarItemCoordinatorType)
+    case favourites(TabBarItemCoordinatorType)
+    
+    var item: UITabBarItem {
+        let item = UITabBarItem(title: displayTitle, image: icon, selectedImage: iconFill)
+        
+        item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.Color.tabBarItemSelected], for: .selected)
+        item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.Color.tabBarItem], for: .normal)
+        
+        UITabBar.appearance().tintColor = Style.Color.tabBarItem
+        UITabBar.appearance().unselectedItemTintColor = Style.Color.tabBarItem
+
+        return item
+    }
     
     var index: Int {
         switch self {
@@ -24,22 +36,38 @@ enum TabItem: Equatable {
         }
     }
     
-    var controller: UIViewController? {
+    var controller: UINavigationController? {
+        var controller: UINavigationController?
         switch self {
         case .news(let coordinator):
-           return coordinator.controller
+             controller = coordinator.controller
         case .favourites(let coordinator):
-            return coordinator.controller
+             controller = coordinator.controller
         }
+        controller?.tabBarItem = item
+        return controller
     }
     
     var icon: UIImage? {
+        var image: UIImage?
         switch self {
         case .news:
-            return UIImage()
+            image = Style.Image.news
         case .favourites:
-            return UIImage()
+            image = Style.Image.favourite
         }
+        return image?.withRenderingMode(.alwaysOriginal).withTintColor(Style.Color.tabBarItem)
+    }
+    
+    var iconFill: UIImage? {
+        var image: UIImage?
+        switch self {
+        case .news:
+            image = Style.Image.newsSelected
+        case .favourites:
+            image = Style.Image.favouriteSelected
+        }
+        return image?.withRenderingMode(.alwaysOriginal).withTintColor(Style.Color.tabBarItemSelected)
     }
     
     var displayTitle: String {

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Article Details View Controller-->
+        <scene sceneID="VeN-zg-Ds6">
+            <objects>
+                <viewController storyboardIdentifier="ArticleDetailsViewController" id="Txf-5V-Pff" customClass="ArticleDetailsViewController" customModule="ViVNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ybg-cG-MZw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwP-v9-iVQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="url" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peV-v7-CiM">
+                                        <rect key="frame" x="197.5" y="5" width="19.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVT-eU-EXM">
+                                        <rect key="frame" x="15" y="4" width="20" height="22"/>
+                                        <state key="normal" image="arrow.backward" catalog="system"/>
+                                        <connections>
+                                            <action selector="backBtnAction:" destination="Txf-5V-Pff" eventType="touchUpInside" id="PP6-aE-bvm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3K-dh-TJg">
+                                        <rect key="frame" x="375" y="3" width="24" height="24"/>
+                                        <state key="normal" image="favorites"/>
+                                        <connections>
+                                            <action selector="favouritesBtnAction:" destination="Txf-5V-Pff" eventType="touchUpInside" id="u3X-Qr-A8I"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="kVT-eU-EXM" firstAttribute="centerY" secondItem="hwP-v9-iVQ" secondAttribute="centerY" id="4Wz-ym-Bju"/>
+                                    <constraint firstItem="kVT-eU-EXM" firstAttribute="leading" secondItem="hwP-v9-iVQ" secondAttribute="leading" constant="15" id="6ja-6l-0al"/>
+                                    <constraint firstAttribute="height" constant="30" id="G1D-I0-gM5"/>
+                                    <constraint firstItem="peV-v7-CiM" firstAttribute="centerX" secondItem="hwP-v9-iVQ" secondAttribute="centerX" id="KrG-dU-DiU"/>
+                                    <constraint firstItem="peV-v7-CiM" firstAttribute="centerY" secondItem="hwP-v9-iVQ" secondAttribute="centerY" id="Lzn-4y-B1e"/>
+                                    <constraint firstAttribute="trailing" secondItem="N3K-dh-TJg" secondAttribute="trailing" constant="15" id="ec0-C2-GPd"/>
+                                    <constraint firstItem="N3K-dh-TJg" firstAttribute="centerY" secondItem="hwP-v9-iVQ" secondAttribute="centerY" id="jsA-OG-1Kl"/>
+                                </constraints>
+                            </view>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l4Z-b1-v0B">
+                                <rect key="frame" x="0.0" y="74" width="414" height="788"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Hhr-rJ-rjo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Hhr-rJ-rjo" firstAttribute="bottom" secondItem="l4Z-b1-v0B" secondAttribute="bottom" id="2FO-AW-MQA"/>
+                            <constraint firstItem="Hhr-rJ-rjo" firstAttribute="trailing" secondItem="hwP-v9-iVQ" secondAttribute="trailing" id="3hF-d4-kQE"/>
+                            <constraint firstItem="hwP-v9-iVQ" firstAttribute="top" secondItem="Hhr-rJ-rjo" secondAttribute="top" id="HCG-ln-88o"/>
+                            <constraint firstItem="l4Z-b1-v0B" firstAttribute="top" secondItem="hwP-v9-iVQ" secondAttribute="bottom" id="afD-CT-5Me"/>
+                            <constraint firstItem="l4Z-b1-v0B" firstAttribute="leading" secondItem="Hhr-rJ-rjo" secondAttribute="leading" id="eBE-Xy-tKd"/>
+                            <constraint firstItem="Hhr-rJ-rjo" firstAttribute="leading" secondItem="hwP-v9-iVQ" secondAttribute="leading" id="gjO-Ro-BjJ"/>
+                            <constraint firstItem="Hhr-rJ-rjo" firstAttribute="trailing" secondItem="l4Z-b1-v0B" secondAttribute="trailing" id="uLr-K5-KEj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="kVT-eU-EXM" id="pZv-xw-LKy"/>
+                        <outlet property="favouritesBtn" destination="N3K-dh-TJg" id="tbF-OR-8UK"/>
+                        <outlet property="titleLabel" destination="peV-v7-CiM" id="hex-pJ-owF"/>
+                        <outlet property="webView" destination="l4Z-b1-v0B" id="9hq-0k-H5n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="piE-31-fmf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="223" y="115"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
+        <image name="favorites" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -7,8 +7,31 @@
 
 import UIKit
 
+protocol FavouritesTabCoordinatorType {}
+
+class FavouritesTabCoordinator: NSObject, FavouritesTabCoordinatorType, TabBarItemCoordinatorType {
+    
+    let controller = UINavigationController()
+
+    private var serviceHolder: ServiceHolder
+    private var favouritesCoordinator: FavouritesCoordinator?
+    
+    init(serviceHolder: ServiceHolder) {
+        self.serviceHolder = serviceHolder
+    }
+    
+    func start() {
+        controller.navigationBar.isTranslucent = false
+        controller.navigationBar.isHidden = true
+
+        favouritesCoordinator = FavouritesCoordinator(navigationController: controller, serviceHolder: serviceHolder)
+        favouritesCoordinator?.start()
+    }
+}
+
+
 protocol FavouritesCoordinatorType {
-    func onNewsDetails()
+    func onNewsDetails(article: NewsModel)
 }
 
 final class FavouritesCoordinator: FavouritesCoordinatorType {
@@ -29,8 +52,8 @@ final class FavouritesCoordinator: FavouritesCoordinatorType {
         }
     }
     
-    func onNewsDetails() {
-        
+    func onNewsDetails(article: NewsModel) {
+        let coordinator = ArticleDetailsCoordinator(navigationController: navigationController, serviceHolder: serviceHolder, article: article)
+        coordinator.start(with: controller)
     }
-
 }
