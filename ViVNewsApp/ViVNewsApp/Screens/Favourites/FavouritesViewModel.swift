@@ -28,8 +28,10 @@ final class FavouritesViewModel: FavouritesViewModelType{
     }
     
     func loadNews() {
-        news = FavouritesService.getFavourites()
-        updateProps()
+        FavouritesService.getFavourites {
+            self.news = $0
+            self.updateProps()
+        }
     }
     
     func updateProps() {
@@ -56,11 +58,15 @@ final class FavouritesViewModel: FavouritesViewModelType{
             date: Date.getFormattedDateString(string: newsModel.publishedDate ?? ""),
             description: newsModel.abstract ?? "",
             imageUrl: getImage(from: newsModel),
-            isFavorite: FavouritesService.isFavourite(id: newsModel.id),
+            isFavorite: self.isFavourite(id: newsModel.id),
             onSelect: Command {
                 self.coordinator.onNewsDetails(article: newsModel)
             }
         )
+    }
+    
+    private func isFavourite(id: Int?) -> Bool {
+        return news.contains { $0.id == id }
     }
     
     private func getImage(from model: NewsModel) -> String? {

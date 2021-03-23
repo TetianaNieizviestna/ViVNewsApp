@@ -31,6 +31,8 @@ final class NewsViewModel: NewsViewModelType {
     private var newsService: NewsServiceType
 
     private var news: [NewsModel] = []
+    private var favouriteNews: [NewsModel] = []
+
     private var selectedTab: NewsSegmentTab = .emailed
     private var screenState: NewsProps.ScreenState = .initial
     
@@ -45,6 +47,14 @@ final class NewsViewModel: NewsViewModelType {
         updateProps()
     }
     
+    
+    private func loadFavourites() {
+        FavouritesService.getFavourites { (favourites) in
+            self.favouriteNews = favourites
+            self.setScreenState(.loaded)
+        }
+    }
+    
     private func loadNews() {
         self.setScreenState(.loading)
         
@@ -54,7 +64,7 @@ final class NewsViewModel: NewsViewModelType {
                 switch result {
                 case .success(let result):
                     self.news = result
-                    self.setScreenState(.loaded)
+                    self.loadFavourites()
                 case .failure(let error):
                     self.setScreenState(.failed(error.localizedDescription))
                 }
@@ -64,7 +74,7 @@ final class NewsViewModel: NewsViewModelType {
                 switch result {
                 case .success(let result):
                     self.news = result
-                    self.setScreenState(.loaded)
+                    self.loadFavourites()
                 case .failure(let error):
                     self.setScreenState(.failed(error.localizedDescription))
                 }
@@ -74,7 +84,7 @@ final class NewsViewModel: NewsViewModelType {
                 switch result {
                 case .success(let result):
                     self.news = result
-                    self.setScreenState(.loaded)
+                    self.loadFavourites()
                 case .failure(let error):
                     self.setScreenState(.failed(error.localizedDescription))
                 }
@@ -98,7 +108,7 @@ final class NewsViewModel: NewsViewModelType {
             date: Date.getFormattedDateString(string: newsModel.publishedDate ?? ""),
             description: newsModel.abstract ?? "",
             imageUrl: getImage(from: newsModel),
-            isFavorite: FavouritesService.isFavourite(id: newsModel.id),
+            isFavorite: self.isFavourite(id: newsModel.id),
             onSelect: Command {
                 self.coordinator.onNewsDetails(article: newsModel)
             }
@@ -116,6 +126,10 @@ final class NewsViewModel: NewsViewModelType {
     func selectSegmentTab(index: Int) {
         selectedTab = NewsSegmentTab(rawValue: index) ?? .emailed
         loadNews()
+    }
+    
+    private func isFavourite(id: Int?) -> Bool {
+        return favouriteNews.contains { $0.id == id }
     }
     
     func updateProps() {

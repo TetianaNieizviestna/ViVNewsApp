@@ -40,6 +40,7 @@ final class ArticleDetailsViewController: UIViewController {
         
         viewModel.didStateChanged = { [weak self] props in
             self?.render(props)
+            self?.delegate?.didChangedFavourites()
         }
     }
     
